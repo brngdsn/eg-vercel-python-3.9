@@ -1,6 +1,8 @@
 from http.server import BaseHTTPRequestHandler
+import asyncio
 import json
-
+from readmeai.config.settings import load_config, load_config_helper
+import readmeai
 import sys
 import platform
 import os
@@ -60,6 +62,20 @@ def get_response_content(readme_content):
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         readme_content = 'n/a'
+
+        # Load configuration and adjust it as needed.
+        conf = load_config()
+        conf_model = conf  # or use AppConfigModel if needed
+        conf_helper = load_config_helper(conf_model)
+        
+        # Set configuration values, e.g., force offline mode and specify output file.
+        conf.cli.offline = True
+        conf.paths.output = "README.md"
+        conf.git.repository = "https://github.com/brngdsn/unmd"
+        # (Other config adjustments can be made here as necessary.)
+        
+        # Run the asynchronous readme generation agent.
+        asyncio.run(readmeai.readme_agent(conf, conf_helper))
 
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
