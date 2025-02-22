@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 import json
-import readmeai
+from readmeai.__main__ import main
 import sys
 import platform
 import os
@@ -60,7 +60,7 @@ def get_response_content(readme_content):
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         readme_content = 'n/a'
-        readmeai.main(
+        main(
             # api_key="YOUR_API_KEY",
             # badges="desired_badge_options",
             emojis=True,
