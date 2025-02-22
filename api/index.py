@@ -9,7 +9,7 @@ import os
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Generate README in offline mode using subprocess and full Python path
-        python_executable = '/var/lang/lib/python3.9'
+        python_executable = 'python3.9'
         try:
             result = subprocess.run(
                 [python_executable, '-m', 'readmeai', '--offline', '--repo-path', './'],
