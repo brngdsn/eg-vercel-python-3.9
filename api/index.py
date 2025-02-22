@@ -86,3 +86,4 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         response_content = get_response_content(readme_content)
         self.wfile.write(json.dumps(response_content).encode())
+
