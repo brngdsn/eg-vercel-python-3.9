@@ -4,7 +4,6 @@ import sys
 import platform
 import os
 
-# Import readme‑ai and its programmatic interface
 import readmeai
 from readmeai.core.pipeline import readme_agent
 from readmeai.config.settings import ConfigLoader
