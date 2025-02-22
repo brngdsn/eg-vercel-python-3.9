@@ -1,6 +1,12 @@
 {
     "version": 2,
     "buildCommand": "pip install --upgrade pip && pip install -r requirements.txt",
+    "builds": [
+        {
+          "src": "api/*.py",
+          "use": "@vercel/python"
+        }
+    ],    
     "redirects": [
         { "source": "/", "destination": "/api" }
     ]
