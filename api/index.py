@@ -12,7 +12,7 @@ class handler(BaseHTTPRequestHandler):
         python_executable = 'python3.9'
         try:
             result = subprocess.run(
-                [python_executable, '-m', 'readmeai', '--offline', '--repo-path', './'],
+                [python_executable, '-m', 'readmeai', '--offline', '--repo-path', 'https://github.com/brngdsn/unmd'],
                 capture_output=True,
                 text=True
             )
