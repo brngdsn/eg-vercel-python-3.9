@@ -19,7 +19,7 @@ class handler(BaseHTTPRequestHandler):
             'message': '(P)ython(API)',
             'readmeai_version': readmeai.__version__,
             'readmeai_path': list(readmeai.__path__),
-            'readmeai': list(readmeai.__spec__),
+            'readmeai': list(readmeai.__package__),
             'readmeai_contents': dir(readmeai),  # Using dir() to list available items
             # 'readmeai_detailed': inspect.getmembers(readmeai),  # Detailed list (optional)
             'version': sys.version,
