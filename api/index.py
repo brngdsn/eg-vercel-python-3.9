@@ -1,14 +1,18 @@
 from http.server import BaseHTTPRequestHandler
 import json
+import subprocess
 import readmeai
-from readmeai import ReadmeGenerator
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        # Generate README in offline mode from a local repository
+        # Generate README in offline mode using subprocess
         try:
-            generator = ReadmeGenerator(offline=True)
-            readme_content = generator.generate_readme(repo_path='./')  # Assuming current directory
+            result = subprocess.run(
+                ['readmeai', '--offline', '--repo-path', './'],
+                capture_output=True,
+                text=True
+            )
+            readme_content = result.stdout if result.returncode == 0 else f"Error: {result.stderr}"
         except Exception as e:
             readme_content = f"Failed to generate README: {str(e)}"
 
