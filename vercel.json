@@ -3,12 +3,6 @@
       "api/execute_readmeai.py": {
         "runtime": "python3.9"
       }
-    },
-    "builds": [
-      {
-        "src": "api/execute_readmeai.py",
-        "use": "@vercel/python"
-      }
-    ]
+    }
   }
   
