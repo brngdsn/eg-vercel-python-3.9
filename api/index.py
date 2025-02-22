@@ -2,13 +2,15 @@ from http.server import BaseHTTPRequestHandler
 import json
 import subprocess
 import readmeai
+import sys
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        # Generate README in offline mode using subprocess
+        # Generate README in offline mode using subprocess and full Python path
+        python_executable = sys.executable
         try:
             result = subprocess.run(
-                ['readmeai', '--offline', '--repo-path', './'],
+                [python_executable, '-m', 'readmeai', '--offline', '--repo-path', './'],
                 capture_output=True,
                 text=True
             )
@@ -24,6 +26,7 @@ class handler(BaseHTTPRequestHandler):
         response_content = {
             'message': '(P)ython(API)#3.9',
             'info': readmeai.__version__,
+            'python_executable': python_executable,
             'readme': readme_content
         }
 
