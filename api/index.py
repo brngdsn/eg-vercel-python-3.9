@@ -12,15 +12,9 @@ def generate_readme():
     """
     Uses readme-ai programmatically to generate a README file.
     """
-    # Create a configuration instance (using default settings)
     config = ConfigLoader()
-    output_file = "README.generated.md"
-    
-    # Generate the README file.
-    # Note: readme_agent is used in the CLI and can be invoked here directly.
+    output_file = "README.md"
     readme_agent(config=config, output_file=output_file)
-    
-    # Read and return the generated README content
     if os.path.exists(output_file):
         with open(output_file, "r", encoding="utf-8") as f:
             return f.read()
@@ -86,4 +80,3 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         response_content = get_response_content(readme_content)
         self.wfile.write(json.dumps(response_content).encode())
-
