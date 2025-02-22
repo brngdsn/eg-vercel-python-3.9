@@ -18,7 +18,6 @@ class handler(BaseHTTPRequestHandler):
             'readmeai_version': readmeai.__version__,
             'readmeai_path': list(readmeai.__path__),
             'readmeai_contents': dir(readmeai),  # Using dir() to list available items
-            'readmeai_detailed': inspect.getmembers(readmeai),  # Detailed list (optional)
             'version': sys.version,
             'version_info': {
                 'major': sys.version_info.major,
