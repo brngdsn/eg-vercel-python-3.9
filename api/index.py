@@ -8,8 +8,7 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
         response_content = {
-            'message': '(P)ython(API)',
-            'info': readmeai.__version__,
-            'meta': readmeai.__spec__
+            'message': '(P)ython(API)#3.9',
+            'info': readmeai.__version__
         }
         self.wfile.write(json.dumps(response_content).encode())
