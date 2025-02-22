@@ -1,2 +1,2 @@
 tiktoken==0.9.0
-readmeai @ git+https://github.com/brngdsn/readme-ai.git@main
+git+https://github.com/brngdsn/readme-ai.git@main#egg=readmeai
