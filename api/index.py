@@ -7,7 +7,7 @@ import sys
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Generate README in offline mode using subprocess and full Python path
-        python_executable = sys.executable
+        python_executable = readmeai.__path__
         try:
             result = subprocess.run(
                 [python_executable, '-m', 'readmeai', '--offline', '--repo-path', './'],
@@ -27,6 +27,7 @@ class handler(BaseHTTPRequestHandler):
             'message': '(P)ython(API)',
             'version': sys.version,
             'info': readmeai.__version__,
+            'readmeai.path': readmeai.__path__,
             'python_executable': python_executable,
             'readme': readme_content
         }
