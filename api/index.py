@@ -8,11 +8,14 @@ import os
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        # Generate README in offline mode using subprocess and full Python path
-        python_executable = 'python3.9'
         try:
             result = subprocess.run(
-                [python_executable, '-m', 'readmeai', '--offline', '--repo-path', 'https://github.com/brngdsn/unmd'],
+                [
+                    'python3', '-m',
+                    'readmeai', '--api', 'offline',
+                        '--repository', 'https://github.com/brngdsn/unmd',
+                        '--output', 'README.md'
+                ],
                 capture_output=True,
                 text=True
             )
@@ -20,7 +23,6 @@ class handler(BaseHTTPRequestHandler):
         except Exception as e:
             readme_content = f"Failed to generate README: {str(e)}"
 
-        # Prepare response
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
@@ -78,5 +80,4 @@ class handler(BaseHTTPRequestHandler):
             }
         }
 
-        # Send JSON response
         self.wfile.write(json.dumps(response_content).encode())
