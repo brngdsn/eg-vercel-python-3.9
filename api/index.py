@@ -4,11 +4,10 @@ import readmeai
 import sys
 import platform
 import os
-import inspect
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        readme_content = 'nonya'
+        readme_content = ''
 
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
@@ -19,9 +18,6 @@ class handler(BaseHTTPRequestHandler):
             'message': '(P)ython(API)',
             'readmeai_version': readmeai.__version__,
             'readmeai_path': list(readmeai.__path__),
-            # 'readmeai': list(readmeai.__package__),
-            'readmeai_contents': dir(readmeai),  # Using dir() to list available items
-            # 'readmeai_detailed': inspect.getmembers(readmeai),  # Detailed list (optional)
             'version': sys.version,
             'version_info': {
                 'major': sys.version_info.major,
@@ -38,8 +34,6 @@ class handler(BaseHTTPRequestHandler):
             'maxsize': sys.maxsize,
             'maxunicode': sys.maxunicode,
             'path': sys.path,
-            # 'modules': list(sys.modules.keys()),
-            # 'builtin_module_names': sys.builtin_module_names,
             'argv': sys.argv,
             'flags': {
                 'debug': sys.flags.debug,
