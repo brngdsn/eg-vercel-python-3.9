@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler
 import json
 import readmeai
+from readmeai import ReadmeGenerator
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
