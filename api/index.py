@@ -24,7 +24,8 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         
         response_content = {
-            'message': '(P)ython(API)#3.10',
+            'message': '(P)ython(API)',
+            'version': sys.version,
             'info': readmeai.__version__,
             'python_executable': python_executable,
             'readme': readme_content
