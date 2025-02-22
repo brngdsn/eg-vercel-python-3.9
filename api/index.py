@@ -5,24 +5,8 @@ import sys
 import platform
 import os
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        readme_content = 'n/a'
-        readmeai.main(
-            # api_key="YOUR_API_KEY",
-            # badges="desired_badge_options",
-            emojis=True,
-            offline=True,
-            # model="model_name",
-            output="README.md",
-            repository="https://github.com/brngdsn/unmd",
-            temperature=0.7,
-        )
-        self.send_response(200)
-        self.send_header('Content-Type', 'application/json')
-        self.end_headers()
-
-        response_content = {
+def get_response_content(readme_content):
+    return {
             'readme': readme_content,
             'message': '(P)ython(API)',
             'readmeai_version': readmeai.__version__,
@@ -72,5 +56,30 @@ class handler(BaseHTTPRequestHandler):
                 'processor': platform.processor()
             }
         }
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        readme_content = 'n/a'
+        readmeai.main(
+            # api_key="YOUR_API_KEY",
+            # badges="desired_badge_options",
+            emojis=True,
+            offline=True,
+            # model="model_name",
+            output="README.md",
+            repository="https://github.com/brngdsn/unmd",
+            temperature=0.7,
+        )
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
+
+        if os.path.exists("README.md"):
+            with open("README.md", "r", encoding="utf-8") as f:
+                readme_content = f.read()
+        else:
+            readme_content = "README file not found."
+
+        response_content = get_response_content(readme_content)
 
         self.wfile.write(json.dumps(response_content).encode())
