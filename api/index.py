@@ -81,12 +81,9 @@ def get_response_content(readme_content):
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        # Instead of serving a static README, generate one via readme-ai.
         readme_content = generate_readme()
-
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
-
         response_content = get_response_content(readme_content)
         self.wfile.write(json.dumps(response_content).encode())
