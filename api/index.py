@@ -17,7 +17,7 @@ class handler(BaseHTTPRequestHandler):
             'message': '(P)ython(API)',
             'readmeai_version': readmeai.__version__,
             'readmeai_path': list(readmeai.__path__),
-            'readmeai_contents': dir(readmeai),  # Using dir() to list available items
+            # 'readmeai_contents': dir(readmeai),
             'version': sys.version,
             'version_info': {
                 'major': sys.version_info.major,
@@ -34,8 +34,8 @@ class handler(BaseHTTPRequestHandler):
             'maxsize': sys.maxsize,
             'maxunicode': sys.maxunicode,
             'path': sys.path,
-            'modules': list(sys.modules.keys()),
-            'builtin_module_names': sys.builtin_module_names,
+            # 'modules': list(sys.modules.keys()),
+            # 'builtin_module_names': sys.builtin_module_names,
             'argv': sys.argv,
             'flags': {
                 'debug': sys.flags.debug,
