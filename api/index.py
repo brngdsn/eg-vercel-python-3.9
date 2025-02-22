@@ -7,8 +7,17 @@ import os
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        readme_content = ''
-
+        readme_content = 'n/a'
+        readmeai.main(
+            # api_key="YOUR_API_KEY",
+            # badges="desired_badge_options",
+            emojis=True,
+            offline=True,
+            # model="model_name",
+            output="README.md",
+            repository="https://github.com/brngdsn/unmd",
+            temperature=0.7,
+        )
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
