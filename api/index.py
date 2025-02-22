@@ -1,12 +1,10 @@
-from flask import Flask
-import readmeai
+from http.server import BaseHTTPRequestHandler
+import json
 
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return 'Hello, World!'
-
-@app.route('/about')
-def about():
-    return 'About'
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
+        response_content = {'message': '(P)ython(API)'}
+        self.wfile.write(json.dumps(response_content).encode())
