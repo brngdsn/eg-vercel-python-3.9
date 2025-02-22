@@ -4,6 +4,8 @@ import sys
 import platform
 import os
 
+import readmeai
+
 def get_response_content(readme_content):
     return {
             'readme': readme_content,
