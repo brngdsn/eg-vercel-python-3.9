@@ -1,5 +1,5 @@
 {
-    "watch": ["api/index.py"],
+    "watch": ["./"],
     "ext": "py",
     "exec": "git add . && git commit -m \"Auto commit on change\" && git push origin"
   }
