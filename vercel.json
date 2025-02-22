@@ -1,8 +1,5 @@
 {
-    "functions": {
-      "api/execute_readmeai.py": {
-        "runtime": "@vercel/python@3.9"
-      }
-    }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/api/index" }
+    ]
   }
-  
