@@ -1,1 +1,1 @@
-tiktoken
+tiktoken==0.9.0
