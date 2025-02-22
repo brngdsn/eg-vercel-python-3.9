@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "brn.gdsn@gmail.com",
-  "license": "ISC",
-  "engines" : {
-    "node": "18.x"
-  }
+  "license": "ISC"
 }
