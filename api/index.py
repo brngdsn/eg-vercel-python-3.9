@@ -4,9 +4,6 @@ import sys
 import platform
 import os
 
-from readmeai.cli import options
-from readmeai.main import main
-
 def get_response_content(readme_content):
     return {
             'readme': readme_content,
@@ -62,16 +59,7 @@ def get_response_content(readme_content):
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         readme_content = 'n/a'
-        main(
-            # api_key="YOUR_API_KEY",
-            # badges="desired_badge_options",
-            emojis=True,
-            offline=True,
-            # model="model_name",
-            output="README.md",
-            repository="https://github.com/brngdsn/unmd",
-            temperature=0.7,
-        )
+
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
