@@ -4,6 +4,7 @@ import subprocess
 import readmeai
 import sys
 import platform
+import os
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
