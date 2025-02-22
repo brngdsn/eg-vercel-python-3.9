@@ -1,35 +1,25 @@
 from http.server import BaseHTTPRequestHandler
 import json
-import subprocess
 import readmeai
 import sys
 import platform
 import os
+import inspect
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        try:
-            result = subprocess.run(
-                [
-                    'python3', '-m',
-                    'readmeai', '--api', 'offline',
-                        '--repository', 'https://github.com/brngdsn/unmd',
-                        '--output', 'README.md'
-                ],
-                capture_output=True,
-                text=True
-            )
-            readme_content = result.stdout if result.returncode == 0 else f"Error: {result.stderr}"
-        except Exception as e:
-            readme_content = f"Failed to generate README: {str(e)}"
-
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
-        
+
         response_content = {
+            'readme': readme_content,
             'message': '(P)ython(API)',
-            'version': sys.version,  # Full Python version string
+            'readmeai_version': readmeai.__version__,
+            'readmeai_path': list(readmeai.__path__),
+            'readmeai_contents': dir(readmeai),  # Using dir() to list available items
+            'readmeai_detailed': inspect.getmembers(readmeai),  # Detailed list (optional)
+            'version': sys.version,
             'version_info': {
                 'major': sys.version_info.major,
                 'minor': sys.version_info.minor,
@@ -37,17 +27,17 @@ class handler(BaseHTTPRequestHandler):
                 'releaselevel': sys.version_info.releaselevel,
                 'serial': sys.version_info.serial
             },
-            'platform': sys.platform,  # OS platform identifier
-            'executable': sys.executable,  # Path to Python executable
-            'prefix': sys.prefix,  # Installation prefix
-            'base_prefix': sys.base_prefix,  # Base installation prefix (virtual envs)
-            'byteorder': sys.byteorder,  # System byte order
-            'maxsize': sys.maxsize,  # Largest supported integer
-            'maxunicode': sys.maxunicode,  # Max Unicode code point
-            'path': sys.path,  # Module search paths
-            'modules': list(sys.modules.keys()),  # List of loaded module names
-            'builtin_module_names': sys.builtin_module_names,  # Built-in modules
-            'argv': sys.argv,  # Command-line arguments
+            'platform': sys.platform,
+            'executable': sys.executable,
+            'prefix': sys.prefix,
+            'base_prefix': sys.base_prefix,
+            'byteorder': sys.byteorder,
+            'maxsize': sys.maxsize,
+            'maxunicode': sys.maxunicode,
+            'path': sys.path,
+            'modules': list(sys.modules.keys()),
+            'builtin_module_names': sys.builtin_module_names,
+            'argv': sys.argv,
             'flags': {
                 'debug': sys.flags.debug,
                 'inspect': sys.flags.inspect,
@@ -61,10 +51,7 @@ class handler(BaseHTTPRequestHandler):
                 'quiet': sys.flags.quiet,
                 'isolated': sys.flags.isolated
             },
-            'recursion_limit': sys.getrecursionlimit(),  # Max recursion depth
-            'readmeai_version': readmeai.__version__,
-            'readmeai_path': list(readmeai.__path__),
-            'readme': readme_content,
+            'recursion_limit': sys.getrecursionlimit(),
             'os': {
                 'name': os.name,
                 'cpu_count': os.cpu_count(),
