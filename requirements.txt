@@ -1,1 +1,1 @@
-readmeai @ git+https://github.com/brngdsn/readme-ai.git@32c98410c6d60a1b84b6e89c2ba12a23bd51e723
+readmeai @ git+https://github.com/brngdsn/readme-ai.git@main

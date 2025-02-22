@@ -10,7 +10,7 @@ from readmeai.config.settings import ConfigLoader
 
 def generate_readme():
     """
-    Uses readme-ai programmatically to generate a README file.
+    Uses readme-ai programmatically to generate a README file..
     """
     config = ConfigLoader()
     output_file = "README.md"
