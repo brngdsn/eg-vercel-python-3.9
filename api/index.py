@@ -9,10 +9,10 @@ import os
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Generate README in offline mode using subprocess and full Python path
-        python_executable = readmeai.__path__
+        python_executable = '/var/lang/lib/python3.9'
         try:
             result = subprocess.run(
-                [python_executable, '-m', '--offline', '--repo-path', './'],
+                [python_executable, '-m', 'readmeai', '--offline', '--repo-path', './'],
                 capture_output=True,
                 text=True
             )
